@@ -483,7 +483,7 @@ describe('Struct', function () {
       assert.equal(bindings['test20 alignof'], np.alignment)
 
       var wp = Struct({
-        names: ['a' ],
+        names: ['a'],
         fields: { a: 'char', p: ref.refType('void') }
       })
       assert.equal(bindings['test21 sizeof'], wp.size)
