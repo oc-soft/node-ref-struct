@@ -157,6 +157,14 @@ typedef struct _test21 {
   void *p;
 } test21;
 
+typedef struct _test22 {
+  int a;
+  short b;
+  char c;
+  char d;
+} test22;
+
+
 void Initialize(v8::Handle<v8::Object> target) {
   Nan::HandleScope scope;
   v8::Isolate *isolate = v8::Isolate::GetCurrent();
@@ -294,7 +302,10 @@ void Initialize(v8::Handle<v8::Object> target) {
 
   target->Set(ctx, Nan::New<v8::String>("test21 sizeof").ToLocalChecked(), Nan::New<v8::Number>(sizeof(test21)));
   target->Set(ctx, Nan::New<v8::String>("test21 alignof").ToLocalChecked(), Nan::New<v8::Number>(__alignof__(test21)));
-}
+
+  target->Set(ctx, Nan::New<v8::String>("test22 sizeof").ToLocalChecked(), Nan::New<v8::Number>(sizeof(test22)));
+  target->Set(ctx, Nan::New<v8::String>("test22 alignof").ToLocalChecked(), Nan::New<v8::Number>(__alignof__(test22)));
+ }
 
 } // anonymous namespace
 

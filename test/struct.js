@@ -77,7 +77,7 @@ describe('Struct', function () {
         , 'pointer': ref.refType('void')
       }
     })
-    var msTestPtr = new Buffer(1)
+    var msTestPtr = Buffer.alloc(1)
     var ms = new MegaStruct({
         byteVal: 100
       , int8Val: -100
@@ -152,7 +152,7 @@ describe('Struct', function () {
         }
       })
       var s = new S()
-      var b = new Buffer(1)
+      var b = Buffer.alloc(1)
       s.ptr1 = ref.NULL
       s.ptr2 = b
       assert.equal(ref.NULL.address(), s.ptr1.address())
@@ -172,7 +172,7 @@ describe('Struct', function () {
         }
       });
 
-      var b = new Buffer(Foo.size * 2);
+      var b = Buffer.alloc(Foo.size * 2);
 
       Foo.set(b, Foo.size * 0, {
         test1: 7123,
@@ -203,7 +203,7 @@ describe('Struct', function () {
         }
       });
 
-      var b = new Buffer(Foo.size * 2);
+      var b = Buffer.alloc(Foo.size * 2);
 
       Foo.set(b, Foo.size * 0, new Foo({
         test1: 7123,
@@ -469,13 +469,14 @@ describe('Struct', function () {
     test19.defineProperty('next', ref.refType(test19));
     test(test19, 19);
 
+
   })
 
   describe('packed struct', function () {
 
     it('with-padding/no-padding struct', function () {
       var np = Struct({
-          names: ['a'],
+          names: ['a', 'p'],
           fields: { a: 'char', p: ref.refType('void') }
         },
         {packed: true})
@@ -483,7 +484,7 @@ describe('Struct', function () {
       assert.equal(bindings['test20 alignof'], np.alignment)
 
       var wp = Struct({
-        names: ['a'],
+        names: ['a', 'p'],
         fields: { a: 'char', p: ref.refType('void') }
       })
       assert.equal(bindings['test21 sizeof'], wp.size)
@@ -491,5 +492,16 @@ describe('Struct', function () {
     })
 
   })
-
+  describe('backwords compatible', function () {
+    it('expect recognize old decration', function() {
+      var test22 = Struct({
+          'a': ref.types.int
+        , 'b': ref.types.short
+        , 'c': ref.types.char
+        , 'd': ref.types.char
+      })
+      assert.equal(bindings['test22 sizeof'], test22.size)
+      assert.equal(bindings['test22 alignof'], test22.alignment)
+    })
+  })
 })
