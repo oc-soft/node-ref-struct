@@ -21,11 +21,11 @@
     "test": "node-gyp rebuild --directory test && node --expose-gc node_modules/mocha/lib/cli/cli.js --reporter spec"
   },
   "dependencies": {
-    "debug": "2",
+    "debug": "latest",
     "ref": "oc-soft/node-ref#master"
   },
   "devDependencies": {
-    "bindings": "~1.2.0",
+    "bindings": "latest",
     "nan": "latest",
     "mocha": "latest",
     "ref-array": "oc-soft/node-ref-array#master"
