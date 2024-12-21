@@ -16,18 +16,26 @@
     "url": "git://github.com/TooTallNate/ref-struct.git"
   },
   "main": "./lib/struct.js",
+  "exports": {
+    "require": "./lib/struct.js",
+    "import": "./lib/struct.mjs"
+  },
   "license": "MIT",
   "scripts": {
-    "test": "node-gyp rebuild --directory test && node --expose-gc node_modules/mocha/lib/cli/cli.js --reporter spec"
+    "test": "node-gyp rebuild --directory test && node --expose-gc node_modules/mocha/lib/cli/cli.js --reporter spec",
+    "test-ts": "TS_NODE_PROJECT=test-ts/tsconfig.json node --loader ts-node/esm test-ts/main.mts"
   },
   "dependencies": {
     "debug": "latest",
     "ref": "oc-soft/node-ref#master"
   },
   "devDependencies": {
+    "@types/node": "latest",
     "bindings": "latest",
-    "nan": "latest",
     "mocha": "latest",
-    "ref-array": "oc-soft/node-ref-array#master"
+    "nan": "latest",
+    "ref-array": "oc-soft/node-ref-array#master",
+    "ts-node": "latest",
+    "typescript": "latest"
   }
 }
