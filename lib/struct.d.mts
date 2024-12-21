@@ -96,8 +96,13 @@ export interface StructType {
   /**
    * convert buffer
    */
-  ref(): Buffer
+  ref(): BufferBufferStruct
 }
+
+export class BufferStruct extends Buffer {
+  type: StructType 
+}
+
 
 export type ObjectStructParam = {
   type: TypeBase 
