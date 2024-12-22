@@ -96,7 +96,7 @@ export interface StructType {
   /**
    * convert buffer
    */
-  ref(): BufferBufferStruct
+  ref(): BufferStruct
 }
 
 export class BufferStruct extends Buffer {

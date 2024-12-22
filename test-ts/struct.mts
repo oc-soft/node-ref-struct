@@ -25,7 +25,6 @@ export function run(): void {
   })
   assert.ok(Buffer.isBuffer(testInstance.ref()))
 
-
   assert.equal(typeof testInstance.ref().type, 'function')
 }
 
